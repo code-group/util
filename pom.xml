@@ -6,9 +6,17 @@
 
     <groupId>com.me.myproject</groupId>
     <artifactId>util</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>validator</module>
+        <module>common</module>
+        <module>aop</module>
+    </modules>
 
     <properties>
+        <!-- 项目版本 -->
+
         <!-- 基础插件版本 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -21,10 +29,28 @@
         <validation.api.version>1.0.0.GA</validation.api.version>
         <hibernate.validator.version>4.1.0.Final</hibernate.validator.version>
         <junit.version>4.12</junit.version>
+        <spring.boot.version>1.5.7.RELEASE</spring.boot.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- ..............................项目内部.............................. -->
+            <dependency>
+                <groupId>com.me.myproject</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me.myproject</groupId>
+                <artifactId>aop</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me.myproject</groupId>
+                <artifactId>validator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- ................................................................... -->
             <!-- 日志 -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -54,28 +80,18 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+            <!-- springboot版本管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -83,6 +99,18 @@
     </dependencies>
 
     <build>
+        <finalName>util</finalName>
+
+        <!-- 可以用maven控制激活的profile，在配置文件中@env@引用 -->
+        <!--<resources>-->
+        <!--<resource>-->
+        <!--<directory>src/main/resources</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*</include>-->
+        <!--</includes>-->
+        <!--<filtering>true</filtering>-->
+        <!--</resource>-->
+        <!--</resources>-->
         <pluginManagement>
             <plugins>
                 <!-- maven默认安装插件-->

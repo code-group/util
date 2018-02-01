@@ -1,7 +1,8 @@
-package validator;
-
 import exception.ParameterException;
 import org.junit.Test;
+import validator.HouseChecks;
+import validator.Parameter;
+import validator.ValidateUtil;
 
 import javax.validation.groups.Default;
 
@@ -10,7 +11,7 @@ import javax.validation.groups.Default;
  * @date 2018/1/31
  * <P>description: 参数、工具调用类</P>
  */
-public class Caller {
+public class ValidatorTest {
 
     @Test
     public void testCheck() {
