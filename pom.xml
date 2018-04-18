@@ -25,6 +25,7 @@
         <!-- 第三方工具 -->
         <log4j.version>1.7.25</log4j.version>
         <lombok.version>1.16.18</lombok.version>
+        <commons.lang.version>2.6</commons.lang.version>
         <!-- validation-api与hibernate-validator有兼容性问题，需特定版本 -->
         <validation.api.version>1.0.0.GA</validation.api.version>
         <hibernate.validator.version>4.1.0.Final</hibernate.validator.version>
@@ -88,13 +89,24 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- FastDateFormat -->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <!-- 根项目中的源码依赖 -->
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
         </dependency>
     </dependencies>
 
