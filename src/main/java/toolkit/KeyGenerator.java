@@ -1,4 +1,4 @@
-package key.generator;
+package toolkit;
 
 import org.apache.commons.lang.time.FastDateFormat;
 
@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author zhull
  * @date 2018/1/31

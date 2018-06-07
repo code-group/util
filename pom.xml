@@ -106,6 +106,11 @@
                 <version>2.4</version>
                 <classifier>jdk15</classifier>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring</artifactId>
+                <version>2.5.6</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -128,6 +133,11 @@
             <artifactId>json-lib</artifactId>
             <classifier>jdk15</classifier>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>util</finalName>
