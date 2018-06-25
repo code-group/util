@@ -57,12 +57,11 @@ public class ValidateUtil {
      */
     public static <T> void validateAll(T object, Class<?>... groups) throws ParameterException {
         Set<ConstraintViolation<T>> contraintViolations = validator.validate(object, groups);
-        List<String> messages = new ArrayList<>();
-        for (ConstraintViolation constraintViolation : contraintViolations) {
-            messages.add(constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
-        }
-        if (messages.size() > 0) {
-            // List.toString() 会打印数组内容
+        if (contraintViolations.size() > 0) {
+            List<String> messages = new ArrayList<>();
+            for (ConstraintViolation violation : contraintViolations) {
+                messages.add(violation.getPropertyPath() + " " + violation.getMessage());
+            }
             throw new ParameterException(ParameterExceptionCode.PARAMETER_ERROR.code, messages.toString());
         }
     }
@@ -72,6 +71,10 @@ public class ValidateUtil {
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");
-        System.out.println(list.toString());
+        try {
+            validate(list);
+        } catch (ParameterException e) {
+            e.printStackTrace();
+        }
     }
 }
