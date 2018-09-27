@@ -26,6 +26,7 @@
         <log4j.version>1.7.25</log4j.version>
         <lombok.version>1.16.18</lombok.version>
         <commons.lang.version>2.6</commons.lang.version>
+        <apache.poi.version>3.8</apache.poi.version>
         <!-- validation-api与hibernate-validator有兼容性问题，需特定版本 -->
         <validation.api.version>1.0.0.GA</validation.api.version>
         <hibernate.validator.version>4.1.0.Final</hibernate.validator.version>
@@ -119,8 +120,13 @@
             <!-- HSSF -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
-                <version>3.17</version>
+                <version>${apache.poi.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
@@ -178,6 +184,10 @@
             <artifactId>guava</artifactId>
         </dependency>
         <!-- HSSF -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>

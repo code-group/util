@@ -3,6 +3,7 @@ package toolkit;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -37,11 +38,13 @@ public class HSSFUtil {
 //            workbook.write(os);
             // 创建xlsx
             XSSFWorkbook xWorkBook = new XSSFWorkbook();
+            CellStyle cellStyle = setCellStyle(xWorkBook);
+            cellStyle.setFont(getFont(xWorkBook));
             XSSFSheet sheet = xWorkBook.createSheet();
             // 创建合并单元格
             sheet.addMergedRegion(new CellRangeAddress(1, 3, 1, 3));
             XSSFRow row = sheet.createRow(0);
-            row.createCell(0).setCellStyle(setCellStyle(xWorkBook));
+            row.createCell(0).setCellStyle(cellStyle);
             row.createCell(0).setCellValue("test");
             row = sheet.createRow(1);
             row.createCell(1).setCellValue("aaa");
@@ -121,17 +124,27 @@ public class HSSFUtil {
 
     private static CellStyle setCellStyle(Workbook workbook) {
         CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setBorderBottom(BorderStyle.THIN);
-        cellStyle.setBorderLeft(BorderStyle.THIN);
-        cellStyle.setBorderRight(BorderStyle.THIN);
-        cellStyle.setBorderTop(BorderStyle.THIN);
-        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setBorderBottom(CellStyle.BORDER_THIN);
+        cellStyle.setBorderLeft(CellStyle.BORDER_THIN);
+        cellStyle.setBorderRight(CellStyle.BORDER_THIN);
+        cellStyle.setBorderTop(CellStyle.BORDER_THIN);
+        cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
         return cellStyle;
+    }
+
+
+    private static Font getFont(Workbook workbook) {
+        XSSFFont font = (XSSFFont) workbook.createFont();
+        // 无效
+        font.setBold(true);
+        font.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        return font;
     }
 
     public static void main(String[] args) throws IOException {
 //        writeBaseTemplate("/Users/zhull/Desktop/h/xxx1.xlsx", "/Users/zhull/Desktop/xxx.xlsx");
         write("/Users/zhull/Desktop/xxx1.xlsx");
-        read("/Users/zhull/Desktop/xxx1.xlsx");
+//        read("/Users/zhull/Desktop/xxx1.xlsx");
     }
 }
