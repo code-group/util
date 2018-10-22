@@ -32,6 +32,7 @@
         <hibernate.validator.version>4.1.0.Final</hibernate.validator.version>
         <junit.version>4.12</junit.version>
         <spring.boot.version>1.5.7.RELEASE</spring.boot.version>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <dependencyManagement>
@@ -153,6 +154,12 @@
                 <artifactId>itext-asian</artifactId>
                 <version>5.2.0</version>
             </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -219,7 +226,11 @@
             <!--<artifactId>xmlworker-micmiu</artifactId>-->
             <!--<version>1.2.1-SNAPSHOT</version>-->
         <!--</dependency>-->
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>util</finalName>
