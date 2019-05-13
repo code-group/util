@@ -32,7 +32,11 @@ public class Interceptor {
         final Object[] args = pjp.getArgs();
 
         try {
+            // 被拦截方法的描述
+            String methodDescription = getAopMethodDescription(pjp);
+            // 验参
             checkParam(args);
+
             pjp.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -73,5 +77,19 @@ public class Interceptor {
                 ValidateUtil.validate(arg);
             }
         }
+    }
+
+    /**
+     * <P>date: 2019/5/13
+     * 获取方法签名中的方法名
+     **/
+    private String getAopMethodDescription(ProceedingJoinPoint pjp) throws NoSuchMethodException {
+        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+        Method declaredMethod = pjp.getTarget().getClass()
+                .getDeclaredMethod(methodSignature.getName(), methodSignature.getMethod().getParameterTypes());
+        if (declaredMethod.isAnnotationPresent(MethodDescription.class)) {
+            return declaredMethod.getAnnotation(MethodDescription.class).value();
+        }
+        return "";
     }
 }
